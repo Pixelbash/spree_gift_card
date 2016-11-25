@@ -6,7 +6,7 @@ Spree::CheckoutController.class_eval do
   private
 
     def add_gift_card_payments
-      @order.add_gift_card_payments(@gift_card)
+      payment = @order.add_gift_card_payments(@gift_card)
 
       # Remove other payment method parameters.
       params[:order].delete(:payments_attributes)
@@ -14,6 +14,13 @@ Spree::CheckoutController.class_eval do
 
       # Return to the Payments page if additional payment is needed.
       if @order.payments.valid.sum(:amount) < @order.total
+        # If auto capture is set, process the payment here
+        # because otherwise it doesn't get processed until
+        # after the additional payment.
+        #if payment.payment_method.auto_capture?
+        #  payment.process!
+        #  @order.reload
+        #end
         redirect_to checkout_state_path(@order.state) and return
       end
     end
