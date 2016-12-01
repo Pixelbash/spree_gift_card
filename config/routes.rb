@@ -1,5 +1,5 @@
 Spree::Core::Engine.routes.draw do
-  resources :gift_cards do
+  resources :gift_cards, path: '/gift-card' do
     member do
       get :redeem
     end
