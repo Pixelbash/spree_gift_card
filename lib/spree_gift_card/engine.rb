@@ -26,6 +26,7 @@ module SpreeGiftCard
 
     initializer "spree.gift_card.permit_params" do |app|
       Spree::PermittedAttributes.source_attributes << :code
+      Spree::PermittedAttributes.line_item_attributes << [gift_card_attributes: [:email, :name, :note, :variant_id]]
     end
 
     config.to_prepare &method(:activate).to_proc
