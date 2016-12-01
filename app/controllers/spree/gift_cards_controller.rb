@@ -12,6 +12,11 @@ module Spree
       end
     end
 
+    def index
+      product_id = Spree::Product.active.where(is_gift_card: true).first.id
+      redirect_to product_path product_id
+    end
+
     def new
       find_gift_card_variants
       @gift_card = GiftCard.new
@@ -38,9 +43,8 @@ module Spree
         end
         redirect_to cart_path
       rescue ActiveRecord::RecordInvalid => e
-        @gift_card = GiftCard.new
-        error = e.record.errors.full_messages.join(", ")
-        logger.fatal e.record.errors.full_messages.join(", ")
+        @gift_card    = GiftCard.new
+        flash[:error] = e.record.errors.full_messages.join(", ")
         find_gift_card_variants
         render :new
       end
