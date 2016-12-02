@@ -6,6 +6,6 @@
   </tr>
   <tr data-hook="order_details_gift_card_total">
     <td><%= Spree.t(:adjusted_total) %>:</strong></td>
-    <td><span id='summary-outstanding-balance'><%= order.display_outstanding_balance.to_html %></span></td>
+    <td><span id='summary-outstanding-balance'><%= order.display_total_with_gift_card.to_html %></span></td>
   </tr>
 <% end %>

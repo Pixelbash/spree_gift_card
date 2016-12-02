@@ -27,6 +27,10 @@ module Spree
         Spree::Money.new(-total_applied_gift_card, currency: currency)
       end
 
+      def display_total_with_gift_card
+        Spree::Money.new(total - total_applied_gift_card, currency: currency)
+      end
+
       included do
         def order_total_after_store_credit_with_gift_card
           order_total_after_store_credit_without_gift_card - total_applied_gift_card
