@@ -13,6 +13,7 @@
 <table class="index table table-hover">
   <thead>
     <tr>
+      <th><%= Spree.t(:order) %></th>
       <th><%= Spree.t(:code) %></th>
       <th><%= Spree.t(:original_value) %></th>
       <th><%= Spree.t(:current_value) %></th>
@@ -25,7 +26,8 @@
   <tbody>
     <% @gift_cards.each do |card| %>
       <tr id="<%= spree_dom_id card %>">
-        <td><%= card.code %></td>
+        <td><%= card.line_item.present? ? card.line_item.order.number : '' %></td>
+        <td><input type="text" value="<%= card.code %>" disabled style="width:50px"/></td>
         <td><%= number_to_currency card.original_value %></td>
         <td><%= number_to_currency card.current_value %></td>
         <td><%= card.email %></td>
