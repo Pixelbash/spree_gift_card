@@ -18,4 +18,10 @@ Spree::OrderContents.class_eval do
     line_item
   end
 
+  def remove_gift_card(variant, options = {})
+    line_item = order.find_line_item_by_variant(variant)
+    order.line_items.destroy(line_item)
+    after_add_or_remove(line_item, options)
+  end
+
 end
