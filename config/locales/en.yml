@@ -4,7 +4,6 @@ en:
     apply: "Apply"
     back_to_gift_cards_list: "Back to Gift Cards List"
     buy_gift_card: "Buy gift card"
-    current_value: "Current Value"
     errors:
       gift_card:
         greater_than_current_value: "can not be more than current_value"
@@ -36,6 +35,8 @@ en:
     new_gift_card: 'New Gift Card'
     note: "Note"
     original_value: "Original Value"
+    current_value: "Current Value"
+    value: "Values"
     recipient_name: "Recipient name"
     successfully_created_gift_card: 'You have successfully created the gift card.'
     transactions: "Transactions"
